@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vista previa - Calendario Publicitario</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7f9;
+      color: #161a1d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .calendar-shell {
+      margin: 0 auto;
+      max-width: 1480px;
+      padding: 12px 24px 40px;
+    }
+
+    .ad-top,
+    .ad-side {
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+      color: #334155;
+      display: flex;
+      font-weight: 800;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .ad-top {
+      background: #0f766e;
+      color: #ffffff;
+      height: 90px;
+      margin: 0 auto 26px;
+      max-width: 970px;
+    }
+
+    .toolbar {
+      align-items: end;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .toolbar p {
+      color: #667085;
+      font-size: .88rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+      text-transform: uppercase;
+    }
+
+    .toolbar h1 {
+      font-size: clamp(2rem, 4vw, 3.75rem);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .year-pill {
+      background: #ffffff;
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+      font-weight: 800;
+      padding: 12px 22px;
+    }
+
+    .content-grid {
+      align-items: start;
+      display: grid;
+      gap: 28px;
+      grid-template-columns: minmax(0, 1fr) 300px;
+    }
+
+    .months-grid {
+      display: grid;
+      gap: 36px 46px;
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+    }
+
+    .month h2 {
+      font-size: 1.25rem;
+      margin: 0 0 10px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .weekdays,
+    .days-grid {
+      display: grid;
+      gap: 4px;
+      grid-template-columns: 34px repeat(7, minmax(28px, 1fr));
+    }
+
+    .weekdays {
+      color: #111827;
+      font-size: .82rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      text-decoration: underline;
+    }
+
+    .weekdays span {
+      text-align: center;
+    }
+
+    .week-label {
+      align-self: center;
+      color: #8a94a6;
+      font-size: .68rem;
+      justify-self: end;
+      padding-right: 4px;
+    }
+
+    .day,
+    .blank {
+      align-items: center;
+      border-radius: 5px;
+      display: inline-flex;
+      height: 24px;
+      justify-content: center;
+      min-width: 28px;
+    }
+
+    .day.sunday {
+      background: #a6a8aa;
+    }
+
+    .day.event {
+      background: #14b8a6;
+      font-weight: 800;
+    }
+
+    .day.orange {
+      background: #f97316;
+    }
+
+    .ad-side {
+      height: 250px;
+      position: sticky;
+      top: 16px;
+    }
+
+    @media (max-width: 1180px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ad-side {
+        display: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .calendar-shell {
+        padding: 10px 14px 30px;
+      }
+
+      .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .months-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="calendar-shell">
+    <section class="ad-top">Anuncia aqui - Banner superior 970 x 90</section>
+
+    <header class="toolbar">
+      <div>
+        <p>Calendario editorial</p>
+        <h1>Calendario publicitario 2026</h1>
+      </div>
+      <div class="year-pill">2026</div>
+    </header>
+
+    <div class="content-grid">
+      <section class="months-grid" id="months"></section>
+      <aside class="ad-side">Anuncia aqui<br>300 x 250</aside>
+    </div>
+  </main>
+
+  <script>
+    const monthsRoot = document.querySelector('#months');
+    const weekdays = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
+    const highlighted = new Set(['2026-06-12', '2026-07-13', '2026-07-20', '2026-12-25']);
+    const orange = new Set(['2026-06-12']);
+
+    function dateKey(date) {
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+
+    function isoWeek(date) {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const dayNumber = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNumber);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    for (let month = 0; month < 12; month++) {
+      const first = new Date(2026, month, 1);
+      const daysInMonth = new Date(2026, month + 1, 0).getDate();
+      const article = document.createElement('article');
+      article.className = 'month';
+      article.innerHTML = `
+        <h2>${first.toLocaleDateString('es-CO', { month: 'long', year: 'numeric' })}</h2>
+        <div class="weekdays">
+          <span class="week-label"></span>
+          ${weekdays.map((day) => `<span>${day}</span>`).join('')}
+        </div>
+        <div class="days-grid"></div>
+      `;
+
+      const grid = article.querySelector('.days-grid');
+      const slots = [
+        ...Array.from({ length: first.getDay() }, () => null),
+        ...Array.from({ length: daysInMonth }, (_, i) => new Date(2026, month, i + 1))
+      ];
+
+      while (slots.length % 7 !== 0) {
+        slots.push(null);
+      }
+
+      for (let i = 0; i < slots.length; i += 7) {
+        const week = slots.slice(i, i + 7);
+        const labelDate = week.find(Boolean) || first;
+        grid.insertAdjacentHTML('beforeend', `<span class="week-label">S${isoWeek(labelDate)}</span>`);
+
+        for (const day of week) {
+          if (!day) {
+            grid.insertAdjacentHTML('beforeend', '<span class="blank"></span>');
+            continue;
+          }
+
+          const key = dateKey(day);
+          const classes = ['day'];
+          if (day.getDay() === 0) classes.push('sunday');
+          if (highlighted.has(key)) classes.push('event');
+          if (orange.has(key)) classes.push('orange');
+          grid.insertAdjacentHTML('beforeend', `<span class="${classes.join(' ')}">${day.getDate()}</span>`);
+        }
+      }
+
+      monthsRoot.appendChild(article);
+    }
+  </script>
+</body>
+</html>

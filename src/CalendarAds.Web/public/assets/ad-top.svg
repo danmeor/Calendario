@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="970" height="90" viewBox="0 0 970 90" role="img" aria-labelledby="title desc">
+  <title id="title">Anuncia aqui en el calendario</title>
+  <desc id="desc">Banner superior para espacio publicitario del calendario.</desc>
+  <rect width="970" height="90" fill="#0f766e"/>
+  <rect x="14" y="14" width="942" height="62" rx="6" fill="#115e59"/>
+  <text x="40" y="54" fill="#fff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Anuncia aqui en el Calendario</text>
+  <text x="650" y="54" fill="#ccfbf1" font-family="Arial, sans-serif" font-size="18">Banner superior 970 x 90</text>
+</svg>

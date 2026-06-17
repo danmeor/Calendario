@@ -1,0 +1,9 @@
+{
+  "name": "Calendario Publicitario",
+  "short_name": "Calendario",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#0f766e",
+  "lang": "es-CO"
+}

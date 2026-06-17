@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250" viewBox="0 0 300 250" role="img" aria-labelledby="title desc">
+  <title id="title">Publicidad calendario izquierda</title>
+  <desc id="desc">Segundo anuncio lateral izquierdo del calendario.</desc>
+  <rect width="300" height="250" fill="#fef3c7"/>
+  <path d="M0 0h300v250H0z" fill="#facc15"/>
+  <path d="M0 0h300L0 250z" fill="#ffffff" opacity=".9"/>
+  <text x="28" y="70" fill="#1f2937" font-family="Arial, sans-serif" font-size="22" font-weight="700">Calendario</text>
+  <text x="28" y="104" fill="#1f2937" font-family="Arial, sans-serif" font-size="30" font-weight="700">con fe</text>
+  <text x="28" y="142" fill="#374151" font-family="Arial, sans-serif" font-size="16">Espacio promocional</text>
+</svg>

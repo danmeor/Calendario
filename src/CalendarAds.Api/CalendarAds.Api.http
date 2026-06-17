@@ -1,0 +1,11 @@
+@CalendarAds.Api_HostAddress = http://localhost:5259
+
+GET {{CalendarAds.Api_HostAddress}}/api/calendar-events?year=2026
+Accept: application/json
+
+###
+
+GET {{CalendarAds.Api_HostAddress}}/api/advertisements?placement=TopBanner
+Accept: application/json
+
+###

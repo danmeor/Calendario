@@ -1,0 +1,83 @@
+<main class="calendar-shell">
+  <section class="top-ad" aria-label="Publicidad superior">
+    <app-ad-slot placement="TopBanner" variant="leaderboard" [ads]="topAds()" />
+  </section>
+
+  <header class="toolbar">
+    <div>
+      <p>Calendario editorial</p>
+      <h1>Calendario {{ selectedYear() }}</h1>
+      <p class="intro">
+        Calendario anual con fechas destacadas, eventos por mes y espacios publicitarios disponibles.
+      </p>
+      <div class="legend" aria-label="Convenciones del calendario">
+        <span><i class="legend-dot holiday-dot"></i>Festivo Colombia</span>
+        <span><i class="legend-dot event-dot"></i>Evento especial</span>
+        <span><i class="legend-dot sunday-dot"></i>Domingo</span>
+      </div>
+    </div>
+
+    <div class="year-controls" aria-label="Cambiar ano">
+      <button type="button" (click)="changeYear(-1)" aria-label="Ano anterior">&lt;</button>
+      <span>{{ selectedYear() }}</span>
+      <button type="button" (click)="changeYear(1)" aria-label="Ano siguiente">&gt;</button>
+    </div>
+  </header>
+
+  <div class="content-grid">
+    <aside class="ad-rail left-rail" aria-label="Publicidad lateral izquierda">
+      @for (ad of leftRailAds(); track ad.id) {
+        <app-ad-slot placement="LeftRail" variant="rectangle" [ads]="[ad]" />
+      }
+    </aside>
+
+    <section class="months-grid" [attr.aria-busy]="loading()" aria-label="Calendario anual">
+      @for (month of months(); track month.index) {
+        <article class="month">
+          <h2>{{ month.name }}</h2>
+
+          <div class="weekdays" aria-hidden="true">
+            <span class="week-label"></span>
+            @for (weekday of weekdays; track weekday) {
+              <span>{{ weekday }}</span>
+            }
+          </div>
+
+          <div class="days-grid">
+            @for (week of month.weeks; track week.id) {
+              <span class="week-label">{{ week.label }}</span>
+              @for (day of week.days; track $index) {
+                @if (day) {
+                  <button
+                    type="button"
+                    class="day"
+                    [class.sunday]="day.date.getDay() === 0"
+                    [class.has-event]="day.events.length > 0"
+                    [class.holiday]="isHoliday(day)"
+                    [style.--event-color]="dayColor(day)"
+                    [title]="day.events.length > 0 ? day.events[0].title : ''"
+                    [attr.aria-label]="dayLabel(day)"
+                  >
+                    <time [attr.datetime]="dateKey(day.date)">{{ day.day }}</time>
+                  </button>
+                } @else {
+                  <span class="blank" aria-hidden="true"></span>
+                }
+              }
+            }
+          </div>
+        </article>
+      }
+    </section>
+
+    <aside class="ad-rail right-rail" aria-label="Publicidad lateral derecha">
+      @for (ad of rightRailAds(); track ad.id) {
+        <app-ad-slot placement="RightRail" variant="rectangle" [ads]="[ad]" />
+      }
+    </aside>
+  </div>
+
+  <section class="bottom-ad" aria-label="Publicidad inferior">
+    <app-ad-slot placement="BottomBanner" variant="horizontal" [ads]="bottomAds()" />
+  </section>
+</main>

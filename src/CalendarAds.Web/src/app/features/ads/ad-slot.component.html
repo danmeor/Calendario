@@ -1,0 +1,29 @@
+@if (primaryAd; as ad) {
+  <a
+    class="ad-slot"
+    [class.rectangle]="variant === 'rectangle'"
+    [class.horizontal]="variant === 'horizontal'"
+    [href]="ad.targetUrl"
+    target="_blank"
+    rel="noopener"
+    (click)="onAdClick(ad)"
+  >
+    <img
+      [src]="imageUrl"
+      [alt]="ad.title"
+      [attr.fetchpriority]="isLazy ? 'low' : 'high'"
+      [attr.width]="width"
+      [attr.height]="height"
+      [attr.loading]="isLazy ? 'lazy' : 'eager'"
+      decoding="async"
+    >
+  </a>
+} @else {
+  <div
+    class="ad-slot placeholder"
+    [class.rectangle]="variant === 'rectangle'"
+    [class.horizontal]="variant === 'horizontal'"
+  >
+    <span>{{ placement }}</span>
+  </div>
+}
