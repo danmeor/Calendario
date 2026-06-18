@@ -36,7 +36,12 @@ export class SeoService {
       description: `Calendario ${year} de Colombia con meses completos, domingos y dias festivos nacionales.`,
       keywords: `calendario ${year} Colombia, dias festivos Colombia, calendario Colombia, festivos Colombia ${year}`,
       inLanguage: 'es-CO',
-      url: `${this.siteUrl}/`
+      url: `${this.siteUrl}/`,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: `${this.siteUrl}/images/calendario-2026-colombia-dias-festivos.svg`,
+        caption: `Calendario ${year} Colombia con dias festivos nacionales`
+      }
     };
 
     let script = this.document.getElementById('calendar-schema');

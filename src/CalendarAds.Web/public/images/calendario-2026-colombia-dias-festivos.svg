@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Calendario 2026 Colombia con dias festivos</title>
+  <desc id="desc">Vista anual del calendario 2026 de Colombia con meses y dias festivos nacionales destacados.</desc>
+  <rect width="1200" height="630" rx="42" fill="#f8fafc"/>
+  <rect x="36" y="36" width="1128" height="558" rx="32" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+  <rect x="36" y="36" width="1128" height="148" rx="32" fill="#0f766e"/>
+  <rect x="36" y="142" width="1128" height="42" fill="#0f766e"/>
+  <text x="82" y="98" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="700">Calendario 2026 Colombia</text>
+  <text x="82" y="142" fill="#d1fae5" font-family="Arial, sans-serif" font-size="24" font-weight="600">Dias festivos nacionales, domingos y meses completos</text>
+  <g transform="translate(890 76)">
+    <rect width="220" height="76" rx="12" fill="#ffffff"/>
+    <rect x="14" y="14" width="192" height="24" fill="#fcd116"/>
+    <rect x="14" y="38" width="192" height="12" fill="#003893"/>
+    <rect x="14" y="50" width="192" height="12" fill="#ce1126"/>
+  </g>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(84 226)">
+      <text x="0" y="0" fill="#0f172a" font-size="28" font-weight="700">Festivos de Colombia 2026</text>
+      <text x="0" y="40" fill="#475467" font-size="20">Consulta fechas como Ano Nuevo, Semana Santa, Independencia, Batalla de Boyaca y Navidad.</text>
+      <text x="0" y="82" fill="#475467" font-size="20">Imagen optimizada para busquedas de calendario Colombia y dias festivos Colombia.</text>
+    </g>
+    <g transform="translate(84 360)">
+      <rect width="1024" height="150" rx="18" fill="#f2f4f7"/>
+      <g fill="#0f172a" font-size="17" font-weight="700">
+        <text x="28" y="42">Enero</text><text x="190" y="42">Febrero</text><text x="358" y="42">Marzo</text><text x="528" y="42">Abril</text><text x="690" y="42">Mayo</text><text x="854" y="42">Junio</text>
+        <text x="28" y="112">Julio</text><text x="190" y="112">Agosto</text><text x="358" y="112">Septiembre</text><text x="528" y="112">Octubre</text><text x="690" y="112">Noviembre</text><text x="854" y="112">Diciembre</text>
+      </g>
+      <g fill="#ef4444">
+        <circle cx="114" cy="36" r="10"/><circle cx="280" cy="36" r="10"/><circle cx="450" cy="36" r="10"/><circle cx="614" cy="36" r="10"/><circle cx="774" cy="36" r="10"/><circle cx="948" cy="36" r="10"/>
+        <circle cx="104" cy="106" r="10"/><circle cx="284" cy="106" r="10"/><circle cx="476" cy="106" r="10"/><circle cx="628" cy="106" r="10"/><circle cx="808" cy="106" r="10"/><circle cx="958" cy="106" r="10"/>
+      </g>
+      <g fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">
+        <text x="114" y="40">F</text><text x="280" y="40">F</text><text x="450" y="40">F</text><text x="614" y="40">F</text><text x="774" y="40">F</text><text x="948" y="40">F</text>
+        <text x="104" y="110">F</text><text x="284" y="110">F</text><text x="476" y="110">F</text><text x="628" y="110">F</text><text x="808" y="110">F</text><text x="958" y="110">F</text>
+      </g>
+    </g>
+  </g>
+  <text x="600" y="558" fill="#667085" font-family="Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle">diasfestivoscol.com</text>
+</svg>
