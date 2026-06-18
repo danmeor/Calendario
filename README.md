@@ -84,7 +84,7 @@ Si no tienes Node/NPM instalado, abre `design-preview.html` directamente en el n
 
 ## SEO, AdSense y rendimiento
 
-- El dominio canonico configurado es `https://diasfestivoscol.com/`.
+- El dominio canonico configurado es `https://www.diasfestivoscol.com/`, porque Vercel esta sirviendo la version con `www`.
 - El HTML inicial incluye contenido semantico para crawlers y usuarios sin JavaScript.
 - La API usa compresion y cache de salida para eventos publicos.
 - La publicidad propia fue retirada: no se guardan anuncios en la base de datos.

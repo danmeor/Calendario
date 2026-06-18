@@ -13,7 +13,7 @@ export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
-  private readonly siteUrl = 'https://diasfestivoscol.com';
+  private readonly siteUrl = 'https://www.diasfestivoscol.com';
 
   update(page: SeoPage): void {
     const canonicalUrl = `${this.siteUrl}${page.canonicalPath ?? '/'}`;

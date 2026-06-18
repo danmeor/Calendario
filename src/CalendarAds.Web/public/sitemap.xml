@@ -3,12 +3,12 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://diasfestivoscol.com/</loc>
+    <loc>https://www.diasfestivoscol.com/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://diasfestivoscol.com/images/calendario-2026-colombia-dias-festivos.svg</image:loc>
+      <image:loc>https://www.diasfestivoscol.com/images/calendario-2026-colombia-dias-festivos.svg</image:loc>
       <image:title>Calendario 2026 Colombia con dias festivos</image:title>
       <image:caption>Vista anual del calendario 2026 de Colombia con dias festivos nacionales destacados.</image:caption>
     </image:image>

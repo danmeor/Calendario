@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://diasfestivoscol.com/sitemap.xml
+Sitemap: https://www.diasfestivoscol.com/sitemap.xml
