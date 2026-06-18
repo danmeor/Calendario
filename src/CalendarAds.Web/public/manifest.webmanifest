@@ -5,5 +5,19 @@
   "display": "standalone",
   "background_color": "#f6f7f9",
   "theme_color": "#0f766e",
-  "lang": "es-CO"
+  "lang": "es-CO",
+  "icons": [
+    {
+      "src": "/favicon-colombia.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }
