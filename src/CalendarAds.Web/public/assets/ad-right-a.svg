@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250" viewBox="0 0 300 250" role="img" aria-labelledby="title desc">
-  <title id="title">Publicidad lateral derecha</title>
-  <desc id="desc">Anuncio lateral derecho para el calendario.</desc>
-  <rect width="300" height="250" fill="#292524"/>
-  <circle cx="150" cy="102" r="58" fill="#44403c" stroke="#d6d3d1" stroke-width="8"/>
-  <circle cx="150" cy="102" r="4" fill="#fafaf9"/>
-  <path d="M150 102l28-22M150 102l-10 34" stroke="#fafaf9" stroke-width="4" stroke-linecap="round"/>
-  <text x="150" y="198" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="700">Conectate a otro nivel</text>
-</svg>

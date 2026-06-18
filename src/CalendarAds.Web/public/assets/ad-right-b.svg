@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250" viewBox="0 0 300 250" role="img" aria-labelledby="title desc">
-  <title id="title">Publicidad lateral derecha secundaria</title>
-  <desc id="desc">Segundo anuncio lateral derecho para el calendario.</desc>
-  <rect width="300" height="250" fill="#0f172a"/>
-  <rect x="24" y="26" width="252" height="198" rx="8" fill="#1e293b"/>
-  <text x="150" y="92" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="24" font-weight="700">Tu marca aqui</text>
-  <text x="150" y="128" text-anchor="middle" fill="#67e8f9" font-family="Arial, sans-serif" font-size="18">Calendario 2026</text>
-  <text x="150" y="164" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="15">300 x 250</text>
-</svg>

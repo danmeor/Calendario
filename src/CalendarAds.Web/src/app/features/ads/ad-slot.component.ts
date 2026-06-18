@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, inject } from '@angular/core';
-import { Advertisement } from '../../core/api.models';
-import { CalendarApiService } from '../../core/calendar-api.service';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, PLATFORM_ID, inject } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ad-slot',
@@ -8,35 +8,22 @@ import { CalendarApiService } from '../../core/calendar-api.service';
   styleUrl: './ad-slot.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdSlotComponent implements OnChanges {
+export class AdSlotComponent implements AfterViewInit {
   @Input({ required: true }) placement = '';
   @Input() variant: 'leaderboard' | 'rectangle' | 'horizontal' = 'leaderboard';
-  @Input() ads: Advertisement[] = [];
+  @Input() slot = '';
 
-  private readonly api = inject(CalendarApiService);
-  private trackedIds = new Set<string>();
+  private readonly platformId = inject(PLATFORM_ID);
+  readonly client = environment.adsenseClient;
 
-  get primaryAd(): Advertisement | undefined {
-    return this.ads[0];
-  }
-
-  get imageUrl(): string {
-    const url = this.primaryAd?.imageUrl ?? '';
-    return url.startsWith('/') ? url.slice(1) : url;
-  }
-
-  ngOnChanges(): void {
-    const ad = this.primaryAd;
-    if (!ad || this.trackedIds.has(ad.id)) {
+  ngAfterViewInit(): void {
+    if (!this.slot || !isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    this.trackedIds.add(ad.id);
-    void this.api.trackAdMetric(ad.id, 'Impression');
-  }
-
-  onAdClick(ad: Advertisement): void {
-    void this.api.trackAdMetric(ad.id, 'Click');
+    const win = window as Window & { adsbygoogle?: unknown[] };
+    win.adsbygoogle = win.adsbygoogle ?? [];
+    win.adsbygoogle.push({});
   }
 
   get width(): number {
@@ -45,9 +32,5 @@ export class AdSlotComponent implements OnChanges {
 
   get height(): number {
     return this.variant === 'leaderboard' ? 90 : this.variant === 'horizontal' ? 90 : 250;
-  }
-
-  get isLazy(): boolean {
-    return this.variant !== 'leaderboard';
   }
 }

@@ -13,7 +13,7 @@ export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
-  private readonly siteUrl = 'https://www.tu-dominio.com';
+  private readonly siteUrl = 'https://diasfestivoscol.com';
 
   update(page: SeoPage): void {
     const canonicalUrl = `${this.siteUrl}${page.canonicalPath ?? '/'}`;
@@ -32,9 +32,9 @@ export class SeoService {
     const schema = {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: `Calendario ${year}`,
-      description: `Calendario anual ${year} con meses, fechas destacadas, eventos y espacios publicitarios.`,
-      keywords: `Calendario, Calendario ${year}, calendario anual, calendario publicitario`,
+      name: `Calendario ${year} Colombia`,
+      description: `Calendario ${year} de Colombia con meses completos, domingos y dias festivos nacionales.`,
+      keywords: `calendario ${year} Colombia, dias festivos Colombia, calendario Colombia, festivos Colombia ${year}`,
       inLanguage: 'es-CO',
       url: `${this.siteUrl}/`
     };

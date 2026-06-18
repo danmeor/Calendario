@@ -204,6 +204,65 @@
   max-width: 728px;
 }
 
+.holiday-summary {
+  border-top: 1px solid #e4e7ec;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  margin-top: 38px;
+  padding-top: 30px;
+}
+
+.holiday-summary h2 {
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.holiday-summary p {
+  color: #475467;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 12px 0 0;
+}
+
+.section-kicker {
+  color: #667085;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.holiday-list {
+  columns: 2;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.holiday-list li {
+  break-inside: avoid;
+  display: grid;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+
+.holiday-list time {
+  color: #b42318;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.holiday-list span {
+  color: #101828;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
 @media (max-width: 1280px) {
   .content-grid {
     grid-template-columns: minmax(0, 1fr) 260px;
@@ -236,5 +295,13 @@
 
   .months-grid {
     grid-template-columns: 1fr;
+  }
+
+  .holiday-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .holiday-list {
+    columns: 1;
   }
 }

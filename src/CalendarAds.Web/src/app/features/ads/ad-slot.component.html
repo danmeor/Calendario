@@ -1,29 +1,14 @@
-@if (primaryAd; as ad) {
-  <a
-    class="ad-slot"
+@if (slot) {
+  <ins
+    class="adsbygoogle ad-slot"
     [class.rectangle]="variant === 'rectangle'"
     [class.horizontal]="variant === 'horizontal'"
-    [href]="ad.targetUrl"
-    target="_blank"
-    rel="noopener"
-    (click)="onAdClick(ad)"
-  >
-    <img
-      [src]="imageUrl"
-      [alt]="ad.title"
-      [attr.fetchpriority]="isLazy ? 'low' : 'high'"
-      [attr.width]="width"
-      [attr.height]="height"
-      [attr.loading]="isLazy ? 'lazy' : 'eager'"
-      decoding="async"
-    >
-  </a>
-} @else {
-  <div
-    class="ad-slot placeholder"
-    [class.rectangle]="variant === 'rectangle'"
-    [class.horizontal]="variant === 'horizontal'"
-  >
-    <span>{{ placement }}</span>
-  </div>
+    [attr.data-ad-client]="client"
+    [attr.data-ad-slot]="slot"
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+    [style.width.px]="width"
+    [style.min-height.px]="height"
+    [attr.aria-label]="placement"
+  ></ins>
 }

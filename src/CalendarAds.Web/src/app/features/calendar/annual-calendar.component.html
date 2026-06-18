@@ -1,18 +1,17 @@
 <main class="calendar-shell">
   <section class="top-ad" aria-label="Publicidad superior">
-    <app-ad-slot placement="TopBanner" variant="leaderboard" [ads]="topAds()" />
+    <app-ad-slot placement="Publicidad superior" variant="leaderboard" [slot]="adSlots.top" />
   </section>
 
   <header class="toolbar">
     <div>
-      <p>Calendario editorial</p>
-      <h1>Calendario {{ selectedYear() }}</h1>
+      <p>Dias festivos Colombia</p>
+      <h1>Calendario {{ selectedYear() }} Colombia</h1>
       <p class="intro">
-        Calendario anual con fechas destacadas, eventos por mes y espacios publicitarios disponibles.
+        Consulta el calendario anual de Colombia con domingos y festivos nacionales visibles por mes. Las fechas se calculan con reglas de festivos fijos, Semana Santa y traslados al lunes.
       </p>
       <div class="legend" aria-label="Convenciones del calendario">
         <span><i class="legend-dot holiday-dot"></i>Festivo Colombia</span>
-        <span><i class="legend-dot event-dot"></i>Evento especial</span>
         <span><i class="legend-dot sunday-dot"></i>Domingo</span>
       </div>
     </div>
@@ -26,9 +25,7 @@
 
   <div class="content-grid">
     <aside class="ad-rail left-rail" aria-label="Publicidad lateral izquierda">
-      @for (ad of leftRailAds(); track ad.id) {
-        <app-ad-slot placement="LeftRail" variant="rectangle" [ads]="[ad]" />
-      }
+      <app-ad-slot placement="Publicidad lateral izquierda" variant="rectangle" [slot]="adSlots.left" />
     </aside>
 
     <section class="months-grid" [attr.aria-busy]="loading()" aria-label="Calendario anual">
@@ -71,13 +68,30 @@
     </section>
 
     <aside class="ad-rail right-rail" aria-label="Publicidad lateral derecha">
-      @for (ad of rightRailAds(); track ad.id) {
-        <app-ad-slot placement="RightRail" variant="rectangle" [ads]="[ad]" />
-      }
+      <app-ad-slot placement="Publicidad lateral derecha" variant="rectangle" [slot]="adSlots.right" />
     </aside>
   </div>
 
+  <section class="holiday-summary" aria-labelledby="holiday-summary-title">
+    <div>
+      <p class="section-kicker">Festivos nacionales</p>
+      <h2 id="holiday-summary-title">Dias festivos de Colombia en {{ selectedYear() }}</h2>
+      <p>
+        Este calendario muestra los festivos de Colombia para {{ selectedYear() }} en una vista anual facil de revisar. Incluye fechas fijas como el 1 de enero, el 20 de julio y el 25 de diciembre, ademas de festivos religiosos y civicos que pueden trasladarse al lunes.
+      </p>
+    </div>
+
+    <ol class="holiday-list">
+      @for (holiday of holidays(); track holiday.id) {
+        <li>
+          <time [attr.datetime]="holiday.startDate">{{ formatEventDate(holiday.startDate) }}</time>
+          <span>{{ holiday.title }}</span>
+        </li>
+      }
+    </ol>
+  </section>
+
   <section class="bottom-ad" aria-label="Publicidad inferior">
-    <app-ad-slot placement="BottomBanner" variant="horizontal" [ads]="bottomAds()" />
+    <app-ad-slot placement="Publicidad inferior" variant="horizontal" [slot]="adSlots.bottom" />
   </section>
 </main>

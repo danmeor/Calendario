@@ -41,7 +41,6 @@ app.UseResponseCompression();
 app.UseOutputCache();
 
 app.MapCalendarEndpoints();
-app.MapAdvertisingEndpoints();
 
 await app.SeedDevelopmentDataAsync();
 

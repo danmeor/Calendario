@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { Advertisement, CalendarEvent } from '../../core/api.models';
+import { environment } from '../../../environments/environment';
+import { CalendarEvent } from '../../core/api.models';
 import { CalendarApiService } from '../../core/calendar-api.service';
 import { SeoService } from '../../core/seo.service';
 import { AdSlotComponent } from '../ads/ad-slot.component';
@@ -36,13 +37,13 @@ export class AnnualCalendarComponent {
   readonly selectedYear = signal(new Date().getFullYear());
   readonly events = signal<CalendarEvent[]>([]);
   readonly eventsByDate = computed(() => this.indexEventsByDate(this.events()));
-  readonly topAds = signal<Advertisement[]>([]);
-  readonly leftRailAds = signal<Advertisement[]>([]);
-  readonly rightRailAds = signal<Advertisement[]>([]);
-  readonly bottomAds = signal<Advertisement[]>([]);
+  readonly adSlots = environment.adsenseSlots;
   readonly loading = signal(true);
 
   readonly months = computed(() => this.buildYear(this.selectedYear(), this.eventsByDate()));
+  readonly holidays = computed(() => this.events()
+    .filter((event) => event.type === 'Holiday' || event.type === 2)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate)));
 
   readonly weekdays = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
 
@@ -60,19 +61,8 @@ export class AnnualCalendarComponent {
   private async loadYear(): Promise<void> {
     this.loading.set(true);
     try {
-      const [events, topAds, leftRailAds, rightRailAds, bottomAds] = await Promise.all([
-        this.api.getEvents(this.selectedYear()),
-        this.api.getAdvertisements('TopBanner'),
-        this.api.getAdvertisements('LeftRail', 2),
-        this.api.getAdvertisements('RightRail', 2),
-        this.api.getAdvertisements('BottomBanner')
-      ]);
-
+      const events = await this.api.getEvents(this.selectedYear());
       this.events.set(events);
-      this.topAds.set(topAds);
-      this.leftRailAds.set(leftRailAds);
-      this.rightRailAds.set(rightRailAds);
-      this.bottomAds.set(bottomAds);
     } finally {
       this.loading.set(false);
     }
@@ -102,11 +92,18 @@ export class AnnualCalendarComponent {
     return this.toDateKey(date);
   }
 
+  formatEventDate(value: string): string {
+    return this.parseDateKey(value).toLocaleDateString('es-CO', {
+      day: 'numeric',
+      month: 'long'
+    });
+  }
+
   private updateSeo(): void {
     const year = this.selectedYear();
     this.seo.update({
-      title: `Calendario ${year} | Calendario anual con eventos y fechas`,
-      description: `Consulta el calendario ${year}: meses completos, fechas destacadas, eventos comerciales y espacios publicitarios.`,
+      title: `Calendario ${year} Colombia | Dias festivos Colombia`,
+      description: `Consulta el calendario ${year} de Colombia con meses completos, domingos y dias festivos nacionales calculados segun las reglas vigentes.`,
       canonicalPath: '/'
     });
     this.seo.setCalendarSchema(year);

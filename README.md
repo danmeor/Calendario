@@ -1,10 +1,10 @@
-# Calendar Ads
+# Dias Festivos Colombia
 
-Aplicacion base para un calendario anual con espacios publicitarios.
+Aplicacion web para consultar el calendario anual de Colombia con domingos y dias festivos nacionales.
 
 ## Arquitectura
 
-- `src/CalendarAds.Api`: ASP.NET Core 9 Web API, Entity Framework Core 9 y PostgreSQL/Supabase.
+- `src/CalendarAds.Api`: ASP.NET Core 9 Web API, Entity Framework Core 9 y PostgreSQL/Supabase para eventos del calendario.
 - `src/CalendarAds.Web`: Angular 22 con componentes standalone.
 - Base de datos recomendada: PostgreSQL en Supabase.
 
@@ -82,32 +82,27 @@ Para trabajar primero solo el diseno, `useMockData` esta en `true` dentro de `sr
 
 Si no tienes Node/NPM instalado, abre `design-preview.html` directamente en el navegador para revisar la maqueta visual sin backend, base de datos ni Angular.
 
-## SEO y rendimiento
+## SEO, AdSense y rendimiento
 
-- Cambia `https://www.tu-dominio.com/` por el dominio real en `src/CalendarAds.Web/src/index.html`, `src/CalendarAds.Web/public/robots.txt`, `src/CalendarAds.Web/public/sitemap.xml` y `src/CalendarAds.Web/src/app/core/seo.service.ts`.
+- El dominio canonico configurado es `https://diasfestivoscol.com/`.
 - El HTML inicial incluye contenido semantico para crawlers y usuarios sin JavaScript.
-- La API usa compresion y cache de salida para eventos y anuncios publicos.
-- El calendario publico usa cache de salida; los anuncios no se cachean para permitir rotacion.
-- Los anuncios tienen dimensiones declaradas para reducir CLS.
+- La API usa compresion y cache de salida para eventos publicos.
+- La publicidad propia fue retirada: no se guardan anuncios en la base de datos.
+- Google AdSense queda preparado con el script oficial y espacios manuales opcionales. Mientras no tengas IDs reales de bloques de anuncio, los espacios no renderizan anuncios falsos.
+- Para que Google pueda mostrar anuncios automaticos aleatorios, activa Auto Ads desde tu cuenta de AdSense cuando el sitio sea aprobado.
 
 ## Endpoints iniciales
 
 - `GET /api/calendar-events?year=2026`
 - `POST /api/calendar-events`
 - `DELETE /api/calendar-events/{id}`
-- `GET /api/advertisements?placement=TopBanner`
-- `GET /api/advertisements?placement=TopBanner&take=1&randomize=true`
-- `POST /api/advertisements`
-- `POST /api/advertisements/{id}/metrics/Impression`
-- `POST /api/advertisements/{id}/metrics/Click`
 
-## Como funciona la rotacion de anuncios
+## Como funciona la publicidad
 
-- Cada espacio pide un anuncio activo con `take=1&randomize=true`.
-- La API filtra por ubicacion, fechas activas y prioridad.
-- Si hay varios anuncios con la prioridad mas alta en el mismo espacio, escoge uno al azar.
-- Si no hay clientes pagos, puedes dejar anuncios de respaldo con prioridad baja, por ejemplo "Anuncia aqui".
-- Google AdSense es otra opcion: requiere cuenta aprobada y pegar el codigo oficial de AdSense en el sitio.
+- El sitio no administra clientes ni campanas propias.
+- AdSense decide de forma automatica que anuncio mostrar, segun el usuario, el contenido y la disponibilidad de inventario.
+- Para anuncios manuales, crea bloques en AdSense y coloca los IDs en `src/CalendarAds.Web/src/environments/environment.ts`.
+- No hagas clic en tus propios anuncios ni uses textos que pidan clics; eso puede afectar la aprobacion y la cuenta.
 
 ## Festivos y dias especiales
 
